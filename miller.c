@@ -34,6 +34,11 @@ int max_d;
 int comflags;
 {
     int	max_obj = m + n;
+    // TEMPORARY HACK FIXME FIXME FIXME
+    // try to avoid out of bounds error below
+    // don't know how to calculate accurate max_obj
+    max_obj *= 10;
+    // FIXME FIXME FIXME FIXME FIXME
     int
 	lower,
 	upper,
@@ -76,9 +81,14 @@ int comflags;
 	}
 	for (d = 1; d <= max_d; ++d) {
 		for (k = lower; k<= upper; k+= 2) {
+
+                        if (k > max_obj) {
+                            Z_fatal("Out of bounds error: k greater than max_obj in do_miller.\n");
+                        }
+
 			new = E_edit_alloc();
 
-			if (k == ORIGIN-d || k!= ORIGIN+d && last_d[k+1] >= last_d[k-1]) {
+			if (k == ORIGIN-d || (k!= ORIGIN+d && last_d[k+1] >= last_d[k-1])) {
 				row = last_d[k+1]+1;
 				E_setnext(new,script[k+1]);
 				E_setop(new,E_DELETE);
