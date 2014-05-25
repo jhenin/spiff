@@ -34,11 +34,6 @@ int max_d;
 int comflags;
 {
     int	max_obj = m + n;
-    // TEMPORARY HACK FIXME FIXME FIXME
-    // try to avoid out of bounds error below
-    // don't know how to calculate accurate max_obj
-    max_obj *= 10;
-    // FIXME FIXME FIXME FIXME FIXME
     int
 	lower,
 	upper,
@@ -47,11 +42,6 @@ int comflags;
 	row,
 	col;
 	E_edit new;
-
-#ifdef STATIC_MEM
-	static E_edit script[MAXT+1];
-	static int last_d[MAXT+1];
-#else
 	E_edit *script;
 	int *last_d;
 	/*
@@ -62,10 +52,13 @@ int comflags;
 	**	be sure to allocate max_obj + 1 objects as was done
 	**		in original miller/myers code
 	*/
-	script = Z_ALLOC(max_obj+1,E_edit);
-	last_d = Z_ALLOC(max_obj+1,int);
+    // TEMPORARY HACK - Jerome Henin 05/2014
+    // try to avoid out of bounds error below
+//	script = Z_ALLOC(max_obj+1,E_edit);
+//	last_d = Z_ALLOC(max_obj+1,int);
+	script = Z_ALLOC(10*max_obj+1,E_edit);
+	last_d = Z_ALLOC(10*max_obj+1,int);
 
-#endif
 	for (row=0;row < m && row < n && X_com(row,row,comflags) == 0; ++row)
 		;
 	last_d[ORIGIN] = row;
@@ -82,8 +75,8 @@ int comflags;
 	for (d = 1; d <= max_d; ++d) {
 		for (k = lower; k<= upper; k+= 2) {
 
-                        if (k > max_obj) {
-                            Z_fatal("Out of bounds error: k greater than max_obj in do_miller.\n");
+                        if (k > max_obj * 10) {
+                            Z_fatal("Out of bounds error: k greater than 10*max_obj in do_miller.\n");
                         }
 
 			new = E_edit_alloc();
@@ -109,6 +102,9 @@ int comflags;
 			}
 			last_d[k] = row;
 			if (row == m && col == n) {
+                                if (k > max_obj) {
+                                    fprintf(stderr, "Bug alert in do_miller: out of bounds k = %i  m = %i  n = %i\n", k, m, n); 
+                                }
 				return(script[k]);
 			}
 			if (row == m)
