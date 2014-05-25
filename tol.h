@@ -26,8 +26,8 @@ typedef struct _T_tstr{
 #define _T_TOLMAX	10	/* number of tolerances that can
 					be in effect at one time */
 
-#define _T_ADEF		"1e-10"	/* default absolute tolerance */
-#define _T_RDEF		"1e-10"	/* default relative tolerance */
+#define _T_ADEF		"1e-9"	/* default absolute tolerance */
+#define _T_RDEF		"1e-9"	/* default relative tolerance */
 
 extern T_tol T_gettol();
 extern void T_clear_tols();

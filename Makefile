@@ -79,7 +79,7 @@ HFILES=misc.h strings.h line.h float.h floatrep.h tol.h command.h comment.h toke
 OTHER=README Makefile Sample.1 Sample.2 Sample.3 Sample.4 paper.ms paper.out
 MANPAGE=spiff.1
 
-CFLAGS= $(OSFLAG) $(TFLAG) $(VISFLAG) -DNOCHATTER
+CFLAGS=$(OSFLAG) $(TFLAG) $(VISFLAG) -DNOCHATTER
 
 default: spiff
 

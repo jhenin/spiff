@@ -18,7 +18,7 @@
 **	when evaluated to a string, the fractional part will
 **		not exceed this length
 */
-#define R_MANMAX	200
+#define R_MANMAX	330 //accommodates max exponent of a double
 
 #define R_POSITIVE	0
 #define R_NEGATIVE	1
