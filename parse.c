@@ -715,7 +715,7 @@ _P_do_parse()
 		if (K_inctmax(_P_fnumb))
 		{
 			(void) sprintf(Z_err_buf,
-     "warning -- to many tokens in file only first %d tokens will be used.\n",
+     "warning -- too many tokens in file only first %d tokens will be used.\n",
 				       K_MAXTOKENS);
 			Z_complain(Z_err_buf);
 			return;
