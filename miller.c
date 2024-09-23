@@ -52,10 +52,6 @@ int comflags;
 	**	be sure to allocate max_obj + 1 objects as was done
 	**		in original miller/myers code
 	*/
-    // TEMPORARY HACK - Jerome Henin 05/2014
-    // try to avoid out of bounds error below
-//	script = Z_ALLOC(max_obj+1,E_edit);
-//	last_d = Z_ALLOC(max_obj+1,int);
 	script = Z_ALLOC(10*max_obj+1,E_edit);
 	last_d = Z_ALLOC(10*max_obj+1,int);
 
