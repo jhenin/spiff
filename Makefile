@@ -47,7 +47,7 @@ OSFLAG=
 #TLIB=Hcurses /lib/libtermcap.a 
 #
 TFLAG=-DM_TERMINFO 
-TLIB=curses
+TLIB=ncurses
 
 #
 #	3) SELECTION OF WINDOW MANAGER AVAILABILITY
@@ -79,7 +79,7 @@ HFILES=misc.h strings.h line.h float.h floatrep.h tol.h command.h comment.h toke
 OTHER=README Makefile Sample.1 Sample.2 Sample.3 Sample.4 paper.ms paper.out
 MANPAGE=spiff.1
 
-CFLAGS=$(OSFLAG) $(TFLAG) $(VISFLAG) -DNOCHATTER
+CFLAGS=$(OSFLAG) $(TFLAG) $(VISFLAG) -ansi -DNOCHATTER
 
 default: spiff
 
