@@ -54,7 +54,7 @@ int flags;
 	if (flags & U_NO_CASE)
 	{
 		
-		for (;('\0' != s1) && ('\0' !=  *s2);s1++,s2++)
+		for (;('\0' != *s1) && ('\0' !=  *s2);s1++,s2++)
 		{
 			if(isalpha(*s1) && isalpha(*s2))
 			{
